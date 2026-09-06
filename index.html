@@ -1,410 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Priyanka Dolse — Business Analyst, Data &amp; AI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#FAF8F3;
-    --paper-dim:#F3F0E9;
-    --ink:#16233D;
-    --ink-soft:#3B4A63;
-    --teal:#1F6F5C;
-    --teal-dim:#E4EEEB;
-    --grey:#6B7280;
-    --rule:#DAD5C8;
-    --serif: 'Source Serif 4', Georgia, serif;
-    --sans: 'Inter', -apple-system, sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation:none !important; transition:none !important;} }
-
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--sans);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;}
-  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
-
-  .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
-
-  /* ---- header / nav ---- */
-  header{
-    padding:26px 0 22px;
-    border-bottom:1px solid var(--rule);
-  }
-  .nav-row{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
-  .wordmark{font-family:var(--serif); font-size:19px; font-weight:600; letter-spacing:0.2px;}
-  nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0;}
-  nav a{font-size:14.5px; text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px;}
-  nav a:hover{border-bottom-color:var(--teal); color:var(--ink);}
-
-  /* ---- hero ---- */
-  .hero{padding:56px 0 40px;}
-  .hero p.kicker{
-    font-family:var(--mono); font-size:13px; color:var(--teal);
-    margin:0 0 14px;
-  }
-  .hero h1{
-    font-family:var(--serif);
-    font-weight:500;
-    font-size:clamp(28px, 4.4vw, 38px);
-    line-height:1.28;
-    margin:0 0 18px;
-    max-width:15ch;
-  }
-  .hero .lede{
-    font-size:16.5px; color:var(--ink-soft); max-width:56ch; margin:0 0 26px;
-  }
-  .hero .lede strong{color:var(--ink); font-weight:600;}
-  .actions{display:flex; gap:14px; flex-wrap:wrap;}
-  .btn{
-    font-family:var(--sans); font-size:14.5px; font-weight:500;
-    padding:11px 18px; border-radius:2px; text-decoration:none;
-    display:inline-block; border:1px solid var(--ink);
-  }
-  .btn.primary{background:var(--ink); color:var(--paper);}
-  .btn.primary:hover{background:var(--teal); border-color:var(--teal);}
-  .btn.ghost{background:transparent; color:var(--ink); border-color:var(--rule);}
-  .btn.ghost:hover{border-color:var(--ink);}
-
-  /* ---- kpi strip ---- */
-  .kpis{
-    padding:30px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
-    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
-  }
-  .kpi .num{font-family:var(--mono); font-size:22px; color:var(--teal); font-weight:500;}
-  .kpi .label{font-size:12.5px; color:var(--grey); margin-top:4px; line-height:1.4;}
-
-  /* ---- section shell ---- */
-  section{padding:52px 0;}
-  section + section{border-top:1px solid var(--rule);}
-  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:26px; gap:12px;}
-  .section-head h2{
-    font-family:var(--serif); font-weight:500; font-size:22px; margin:0;
-  }
-  .section-head .count{font-family:var(--mono); font-size:12.5px; color:var(--grey);}
-
-  /* ---- about ---- */
-  .about p{font-size:15.5px; color:var(--ink-soft); max-width:62ch; margin:0 0 14px;}
-  .focus-list{margin:20px 0 0; padding:0; list-style:none; display:grid; gap:10px;}
-  .focus-list li{
-    font-size:14.5px; color:var(--ink-soft); padding-left:16px; position:relative;
-  }
-  .focus-list li::before{content:"—"; position:absolute; left:0; color:var(--teal);}
-
-  /* ---- experience ---- */
-  .role{
-    display:grid; grid-template-columns:120px 1fr; gap:18px;
-    padding:18px 0; border-top:1px solid var(--rule);
-  }
-  .role:first-of-type{border-top:none;}
-  .role .when{font-family:var(--mono); font-size:12.5px; color:var(--grey); padding-top:3px;}
-  .role h3{font-size:15.5px; margin:0 0 4px; font-weight:600;}
-  .role .org{font-size:13.5px; color:var(--teal); margin:0 0 8px;}
-  .role p.desc{font-size:14px; color:var(--ink-soft); margin:0; max-width:52ch;}
-
-  /* ---- projects ---- */
-  .project{
-    padding:26px 0; border-top:1px solid var(--rule);
-  }
-  .project:first-of-type{border-top:none;}
-  .project-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:10px;}
-  .project h3{font-family:var(--serif); font-size:19px; font-weight:500; margin:0;}
-  .status{
-    font-family:var(--mono); font-size:11px; padding:3px 9px; border-radius:2px; white-space:nowrap;
-  }
-  .status.live{background:var(--teal-dim); color:var(--teal);}
-  .status.progress{background:var(--paper-dim); color:var(--grey); border:1px solid var(--rule);}
-  .project .stack{font-family:var(--mono); font-size:12px; color:var(--grey); margin:0 0 12px;}
-  .project p{font-size:14.5px; color:var(--ink-soft); max-width:60ch; margin:0 0 10px;}
-  .project .tag-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;}
-  .tag{
-    font-size:12px; color:var(--ink-soft); border:1px solid var(--rule);
-    padding:4px 10px; border-radius:2px;
-  }
-  details{margin-top:14px;}
-  summary{
-    cursor:pointer; font-size:13.5px; color:var(--teal); font-weight:500;
-    list-style:none;
-  }
-  summary::-webkit-details-marker{display:none;}
-  summary::after{content:" — read the case study"; }
-  details[open] summary::after{content:" — collapse";}
-  .case-body{
-    margin-top:16px; padding:20px 22px; background:var(--paper-dim);
-    border-left:2px solid var(--teal); font-size:14px; color:var(--ink-soft);
-  }
-  .case-body h4{
-    font-family:var(--sans); font-size:12.5px; text-transform:none; color:var(--ink);
-    margin:18px 0 8px; font-weight:600;
-  }
-  .case-body h4:first-child{margin-top:0;}
-  .case-body p{margin:0 0 10px;}
-  .case-body ul{margin:0 0 10px; padding-left:18px;}
-  .case-body li{margin-bottom:5px;}
-  .fw-table{width:100%; border-collapse:collapse; margin:10px 0 16px; font-size:13px;}
-  .fw-table th, .fw-table td{
-    text-align:left; padding:8px 10px; border-bottom:1px solid var(--rule); vertical-align:top;
-  }
-  .fw-table th{font-weight:600; color:var(--ink); font-size:12px;}
-
-  /* ---- skills ---- */
-  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px 32px;}
-  .skill-group h4{font-size:13px; margin:0 0 8px; color:var(--teal); font-weight:600;}
-  .skill-group p{font-size:13.5px; color:var(--ink-soft); margin:0; line-height:1.6;}
-
-  /* ---- footer ---- */
-  footer{padding:44px 0 60px;}
-  footer .lede{font-size:15px; color:var(--ink-soft); max-width:48ch; margin:0 0 22px;}
-  .contact-row{display:flex; gap:22px; flex-wrap:wrap; font-size:14px;}
-  .contact-row a{text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:2px;}
-  .contact-row a:hover{border-bottom-color:var(--teal); color:var(--teal);}
-  footer .fine{font-size:12px; color:var(--grey); margin-top:36px;}
-
-  @media (max-width:640px){
-    .kpis{grid-template-columns:1fr 1fr;}
-    .role{grid-template-columns:1fr; gap:4px;}
-    .skills-grid{grid-template-columns:1fr;}
-    nav ul{gap:14px;}
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="wrap nav-row">
-    <div class="wordmark">Priyanka Dolse</div>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<div class="hero wrap">
-  <p class="kicker">Business Analyst — Data &amp; AI</p>
-  <h1>I turn messy processes and messier spreadsheets into decisions people can act on.</h1>
-  <p class="lede">3+ years across banking, consulting and digital media — <strong>DBS Bank (Singapore)</strong>, Cognizant and independent consulting work in London. MSc Management, University of Bristol. Currently based between the <strong>UK and Singapore</strong>, open to roles in both.</p>
-  <div class="actions">
-    <a class="btn primary" href="mailto:priyanka.dolse03@gmail.com">Get in touch</a>
-    <a class="btn ghost" href="http://www.linkedin.com/in/priyanka-dolse" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn ghost" href="#projects">See projects</a>
-  </div>
-</div>
-
-<div class="wrap">
-  <div class="kpis">
-    <div class="kpi"><div class="num">90%</div><div class="label">cut in manual reporting time via a Power BI rebuild</div></div>
-    <div class="kpi"><div class="num">35%</div><div class="label">funding shortfall risk identified in a 5-year financial model</div></div>
-    <div class="kpi"><div class="num">0</div><div class="label">post-launch incidents across two major go-lives</div></div>
-    <div class="kpi"><div class="num">30%</div><div class="label">faster dashboard load times on 40–50K+ row datasets</div></div>
-  </div>
-</div>
-
-<section id="about">
-  <div class="wrap">
-    <div class="section-head"><h2>About</h2></div>
-    <div class="about">
-      <p>I'm a Business Analyst who ended up doing the data engineer's job as often as the analyst's — auditing a client's tangle of spreadsheet formulas is usually where the "real" requirements turn up before anyone's written them down. I've done that at a global bank, inside a consulting engagement, and most recently rebuilding a digital media client's entire reporting stack.</p>
-      <p>My focus right now is the overlap between classic business analysis and AI: process discovery for AI-augmented workflows, and the governance question that comes right after — is this AI system actually compliant, and can you prove it.</p>
-      <ul class="focus-list">
-        <li>Process discovery &amp; requirements — BRD/FRD, BPMN, user stories, gap analysis</li>
-        <li>Data &amp; reporting — SQL, Power Query, Power BI, DAX, spreadsheet/macro audit</li>
-        <li>AI governance — EU AI Act, NIST AI RMF, ISO/IEC 42001</li>
-        <li>Delivery — Agile/Scrum, SIT/UAT, stakeholder facilitation across large groups</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrap">
-    <div class="section-head"><h2>Experience</h2></div>
-
-    <div class="role">
-      <div class="when">2025–26</div>
-      <div>
-        <h3>Consultant</h3>
-        <p class="org">Blackmont Consulting, London</p>
-        <p class="desc">Built a 5-year financial model for a London NGO; identified a 35% funding shortfall risk and secured leadership sign-off on 3 of 4 proposed revenue streams.</p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">2023</div>
-      <div>
-        <h3>Business Analyst</h3>
-        <p class="org">DBS Bank, Singapore</p>
-        <p class="desc">Owned end-to-end process discovery for an automation build across multiple internal systems; delivered a defect-free go-live with zero post-launch incidents.</p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">2021–23</div>
-      <div>
-        <h3>Analyst</h3>
-        <p class="org">Cognizant, Pune</p>
-        <p class="desc">Coordinated a 15-person cross-functional team on a digital transformation programme; authored 30+ user stories with zero requirement ambiguity across 7 Agile sprints.</p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">2020–21</div>
-      <div>
-        <h3>Junior Power BI Developer</h3>
-        <p class="org">Expert Global Solutions, Aurangabad</p>
-        <p class="desc">Rebuilt data models in SQL and Power Query, cutting dashboard load time by 30% on 40–50K+ record datasets.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="wrap">
-    <div class="section-head"><h2>Selected projects</h2><span class="count">2 live · 1 in progress</span></div>
-
-    <div class="project">
-      <div class="project-top">
-        <h3>AI Governance Case Study — Regulatory Roadmap for an Enterprise AI Launch</h3>
-        <span class="status live">Written up</span>
-      </div>
-      <p class="stack">EU AI Act · NIST AI RMF · ISO/IEC 42001 · Risk assessment · Stakeholder facilitation</p>
-      <p>Led a 5-person team producing a governance roadmap for an enterprise software launch, mapping the system against three major AI regulatory and risk frameworks before go-live.</p>
-      <details>
-        <summary>Case study</summary>
-        <div class="case-body">
-          <h4>Context</h4>
-          <p>An enterprise software provider was preparing to launch an AI-assisted feature into an existing product used by regulated business customers. Legal and product teams had a rough sense that "the EU AI Act probably applies," but no shared view of which obligations actually applied, who owned them, or what evidence they'd need to show a regulator or an enterprise customer's procurement team.</p>
-
-          <h4>Objective</h4>
-          <p>Produce a roadmap the business could actually act on: classify the system's risk tier, translate that into concrete pre-launch obligations, and give engineering and product a sequenced plan rather than a compliance memo that sat in a folder.</p>
-
-          <h4>Approach</h4>
-          <p>I led a 5-person team through a structured discovery process rather than a desk-based literature review — the framework text alone doesn't tell you what a specific product actually does:</p>
-          <ul>
-            <li>Ran structured interviews with product and engineering to map what the AI feature actually did, not what the roadmap deck said it did — the two differed in a few places that mattered for risk classification.</li>
-            <li>Classified the system against the EU AI Act's risk-tier structure, and cross-checked that classification against NIST AI RMF's Govern/Map/Measure/Manage functions to catch anything the EU framework doesn't explicitly ask for but a US enterprise customer likely would.</li>
-            <li>Benchmarked existing internal documentation (model cards, data lineage, testing records) against ISO/IEC 42001's AI management system requirements to find the gaps — this is usually where the real work is, since most of what's "missing" already half-exists somewhere and just needs to be formalised.</li>
-            <li>Facilitated a cross-functional workshop with legal, product and engineering to pressure-test the draft roadmap and get sign-off on ownership for each obligation — a roadmap nobody owns doesn't survive contact with a launch deadline.</li>
-          </ul>
-
-          <h4>Framework alignment (illustrative)</h4>
-          <table class="fw-table">
-            <tr><th>Framework</th><th>What it added</th><th>Roadmap output</th></tr>
-            <tr><td>EU AI Act</td><td>Risk-tier classification &amp; transparency obligations</td><td>Pre-launch obligations list, owner assigned per item</td></tr>
-            <tr><td>NIST AI RMF</td><td>Govern/Map/Measure/Manage lens on top of legal risk tier</td><td>Ongoing monitoring &amp; measurement plan, not just a launch checklist</td></tr>
-            <tr><td>ISO/IEC 42001</td><td>Management-system structure — what "good" looks like operationally</td><td>Gap list against existing documentation, prioritised by effort</td></tr>
-          </table>
-
-          <h4>Outcome &amp; what I'd do differently</h4>
-          <p>The team delivered a roadmap that reframed governance as a set of owned, sequenced actions rather than a legal opinion — which is what actually got it picked up by engineering. In hindsight, I'd bring engineering into the room a stage earlier: some of the "gaps" we flagged in week three were already half-solved by existing logging infrastructure nobody on the compliance side knew existed.</p>
-        </div>
-      </details>
-      <div class="tag-row">
-        <span class="tag">Feb–Apr 2025</span>
-        <span class="tag">QA Systems, Bath</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-top">
-        <h3>Employee Attrition Analysis &amp; Prediction</h3>
-        <span class="status live">Live</span>
-      </div>
-      <p class="stack">Python · SQL (MySQL) · Logistic Regression · Power BI · DAX</p>
-      <p>End-to-end HR analytics project on the IBM HR Analytics dataset: schema and data-quality validation in Python, a logistic regression model to find statistically significant attrition drivers, SQL-based KPI validation to keep the numbers honest, and an interactive Power BI dashboard for leadership reporting.</p>
-      <details>
-        <summary>Case study</summary>
-        <div class="case-body">
-          <h4>Problem &amp; hypotheses</h4>
-          <p>1,470 employee records, 16.12% overall attrition. Rather than exploring the data at random, I framed four hypotheses upfront: attrition is higher among early-career employees; lower compensation correlates with higher attrition; overtime and frequent travel raise attrition risk; and attrition falls with higher job level and tenure.</p>
-
-          <h4>Approach</h4>
-          <ul>
-            <li>Validated schema and data types, handled missing values by type, and resolved duplicates in Python before any analysis touched the numbers.</li>
-            <li>Ran exploratory data analysis to test each hypothesis, then trained a logistic regression model to identify which drivers were actually statistically significant rather than just visually suggestive.</li>
-            <li>Cross-verified every headline KPI in SQL independently of the Python output, so the dashboard numbers and the model numbers couldn't quietly drift apart.</li>
-            <li>Built the Power BI dashboard last, once the underlying metrics were already validated two different ways.</li>
-          </ul>
-
-          <h4>Findings</h4>
-          <p>All four hypotheses held: entry-level and junior employees, lower income bands, employees under 35, frequent travellers, and staff working overtime with long commutes all showed disproportionately higher attrition. Sales and R&amp;D were the highest-attrition departments.</p>
-
-          <h4>Recommendation</h4>
-          <p>Short-term: strengthen onboarding/mentorship for early-career staff, review compensation in low-income high-attrition roles, and monitor overtime distribution. Longer-term: revisit travel policy and build targeted retention programmes for Sales and R&amp;D specifically, rather than a blanket company-wide initiative.</p>
-        </div>
-      </details>
-      <div class="tag-row">
-        <a class="tag" href="https://github.com/priyankadatacodes/hr-employee-attrition-analysis" target="_blank" rel="noopener" style="text-decoration:none;">View on GitHub</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-top">
-        <h3>GenAI Assistant for User Story Drafting</h3>
-        <span class="status progress">In progress</span>
-      </div>
-      <p class="stack">LLM API · Python</p>
-      <p>A small tool that takes a rough meeting transcript and drafts structured user stories with acceptance criteria — the first-pass work I currently do by hand after every requirements workshop. Built to be honest about where it helps (first draft, consistent formatting) and where it still needs a human (edge cases, prioritisation).</p>
-      <div class="tag-row">
-        <span class="tag">GitHub repo — link coming soon</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="section-head"><h2>Skills</h2></div>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h4>Process &amp; requirements</h4>
-        <p>As-Is/To-Be mapping, BPMN 2.0 (Visio), swimlane workflows, BRD/FRD/PRD, gap analysis, SOP documentation</p>
-      </div>
-      <div class="skill-group">
-        <h4>Data &amp; BI</h4>
-        <p>SQL (PostgreSQL, MySQL, Snowflake), Power Query, Power BI, DAX, advanced Excel &amp; macro audit</p>
-      </div>
-      <div class="skill-group">
-        <h4>AI &amp; governance</h4>
-        <p>EU AI Act, NIST AI RMF, ISO/IEC 42001, generative AI tools for analysis acceleration</p>
-      </div>
-      <div class="skill-group">
-        <h4>Delivery</h4>
-        <p>Agile/Scrum, MoSCoW prioritisation, SIT/UAT, stakeholder facilitation, JIRA, Confluence</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer id="contact">
-  <div class="wrap">
-    <div class="section-head"><h2>Contact</h2></div>
-    <p class="lede">Looking for Business Analyst, AI Business Analyst and Data/BI roles in the UK and Singapore. Happy to talk about any of the above, or send over the full CV.</p>
-    <div class="contact-row">
-      <a href="mailto:priyanka.dolse03@gmail.com">priyanka.dolse03@gmail.com</a>
-      <a href="tel:+447471577182">+44 7471 577182</a>
-      <a href="http://www.linkedin.com/in/priyanka-dolse" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-    <p class="fine">London, UK · Singapore</p>
-  </div>
-</footer>
-
-</body>
-</html>
+Priyanka Dolse
+		About
+		Experience
+		Projects
+		Contact
+Business Analyst — Data & AI
+I turn messy processes and messier spreadsheets into decisions people can act on.
+3+ years across banking, consulting and digital media — DBS Bank (Singapore), Cognizant and independent consulting work in London. MSc Management, University of Bristol. Based in London, UK, open to roles there and in Singapore.
+Get in touch
+LinkedIn
+See projects
+90%
+cut in manual reporting time via a Power BI rebuild
+35%
+funding shortfall risk identified in a 5-year financial model
+0
+post-launch incidents across two major go-lives
+30%
+faster dashboard load times on 40–50K+ row datasets
+About
+I'm a Business Analyst who ended up doing the data engineer's job almost as often as the analyst's. Auditing a client's tangle of spreadsheet formulas is usually where the real requirements turn up — long before anyone's written them down. I've done that at a global bank, inside a consulting engagement, and most recently rebuilding a digital media client's entire reporting stack from scratch.
+What I'm best at is the handoff most people drop: turning a messy, half-spoken business problem into something a developer can build and a stakeholder can sign off on. Lately that's meant AI-augmented workflows specifically — scoping what the system should do, and then the governance question that comes right after: is it actually compliant, and can you prove it.
+		Process discovery & requirements — BRD/FRD, BPMN, user stories, gap analysis
+		Data & reporting — SQL, Power Query, Power BI, DAX, spreadsheet/macro audit
+		AI governance — EU AI Act, NIST AI RMF, ISO/IEC 42001
+		Delivery — Agile/Scrum, SIT/UAT, stakeholder facilitation across large groups
+SQL
+Power BI
+DAX
+Power Query
+Python
+BPMN 2.0
+BRD / FRD
+Agile / Scrum
+SIT / UAT
+JIRA
+EU AI Act
+ISO/IEC 42001
+Experience
+2025–26
+Consultant
+Blackmont Consulting, London
+Built a 5-year financial model for a London NGO; identified a 35% funding shortfall risk and secured leadership sign-off on 3 of 4 proposed revenue streams.
+2023
+Business Analyst
+DBS Bank, Singapore
+Owned end-to-end process discovery for an automation build across multiple internal systems; delivered a defect-free go-live with zero post-launch incidents.
+2021–23
+Analyst
+Cognizant, Pune
+Coordinated a 15-person cross-functional team on a digital transformation programme; authored 30+ user stories with zero requirement ambiguity across 7 Agile sprints.
+2020–21
+Junior Power BI Developer
+Expert Global Solutions, Aurangabad
+Rebuilt data models in SQL and Power Query, cutting dashboard load time by 30% on 40–50K+ record datasets.
+Selected projects
+2 live · 1 in progress
+AI Governance Case Study — Regulatory Roadmap for an Enterprise AI Launch
+Written up
+EU AI Act · NIST AI RMF · ISO/IEC 42001 · Risk assessment · Stakeholder facilitation
+Led a 5-person team producing a governance roadmap for an enterprise software launch, mapping the system against three major AI regulatory and risk frameworks before go-live.
+Case study
+Context
+An enterprise software provider was preparing to launch an AI-assisted feature into an existing product used by regulated business customers. Legal and product teams had a rough sense that "the EU AI Act probably applies," but no shared view of which obligations actually applied, who owned them, or what evidence they'd need to show a regulator or an enterprise customer's procurement team.
+Objective
+Produce a roadmap the business could actually act on: classify the system's risk tier, translate that into concrete pre-launch obligations, and give engineering and product a sequenced plan rather than a compliance memo that sat in a folder.
+Approach
+I led a 5-person team through a structured discovery process rather than a desk-based literature review — the framework text alone doesn't tell you what a specific product actually does:
+	•	Ran structured interviews with product and engineering to map what the AI feature actually did, not what the roadmap deck said it did — the two differed in a few places that mattered for risk classification.
+	•	Classified the system against the EU AI Act's risk-tier structure, and cross-checked that classification against NIST AI RMF's Govern/Map/Measure/Manage functions to catch anything the EU framework doesn't explicitly ask for but a US enterprise customer likely would.
+	•	Benchmarked existing internal documentation (model cards, data lineage, testing records) against ISO/IEC 42001's AI management system requirements to find the gaps — this is usually where the real work is, since most of what's "missing" already half-exists somewhere and just needs to be formalised.
+	•	Facilitated a cross-functional workshop with legal, product and engineering to pressure-test the draft roadmap and get sign-off on ownership for each obligation — a roadmap nobody owns doesn't survive contact with a launch deadline.
+Framework alignment (illustrative)
+Framework
+What it added
+Roadmap output
+EU AI Act
+Risk-tier classification & transparency obligations
+Pre-launch obligations list, owner assigned per item
+NIST AI RMF
+Govern/Map/Measure/Manage lens on top of legal risk tier
+Ongoing monitoring & measurement plan, not just a launch checklist
+ISO/IEC 42001
+Management-system structure — what "good" looks like operationally
+Gap list against existing documentation, prioritised by effort
+Outcome & what I'd do differently
+The team delivered a roadmap that reframed governance as a set of owned, sequenced actions rather than a legal opinion — which is what actually got it picked up by engineering. In hindsight, I'd bring engineering into the room a stage earlier: some of the "gaps" we flagged in week three were already half-solved by existing logging infrastructure nobody on the compliance side knew existed.
+Feb–Apr 2025
+QA Systems, Bath
+Employee Attrition Analysis & Prediction
+Live
+Python · SQL (MySQL) · Logistic Regression · Power BI · DAX
+End-to-end HR analytics project on the IBM HR Analytics dataset: schema and data-quality validation in Python, a logistic regression model to find statistically significant attrition drivers, SQL-based KPI validation to keep the numbers honest, and an interactive Power BI dashboard for leadership reporting.
+Case study
+Problem & hypotheses
+1,470 employee records, 16.12% overall attrition. Rather than exploring the data at random, I framed four hypotheses upfront: attrition is higher among early-career employees; lower compensation correlates with higher attrition; overtime and frequent travel raise attrition risk; and attrition falls with higher job level and tenure.
+Approach
+	•	Validated schema and data types, handled missing values by type, and resolved duplicates in Python before any analysis touched the numbers.
+	•	Ran exploratory data analysis to test each hypothesis, then trained a logistic regression model to identify which drivers were actually statistically significant rather than just visually suggestive.
+	•	Cross-verified every headline KPI in SQL independently of the Python output, so the dashboard numbers and the model numbers couldn't quietly drift apart.
+	•	Built the Power BI dashboard last, once the underlying metrics were already validated two different ways.
+Findings
+All four hypotheses held: entry-level and junior employees, lower income bands, employees under 35, frequent travellers, and staff working overtime with long commutes all showed disproportionately higher attrition. Sales and R&D were the highest-attrition departments.
+Recommendation
+Short-term: strengthen onboarding/mentorship for early-career staff, review compensation in low-income high-attrition roles, and monitor overtime distribution. Longer-term: revisit travel policy and build targeted retention programmes for Sales and R&D specifically, rather than a blanket company-wide initiative.
+View on GitHub
+GenAI Assistant for User Story Drafting
+In progress
+LLM API · Python
+A small tool that takes a rough meeting transcript and drafts structured user stories with acceptance criteria — the first-pass work I currently do by hand after every requirements workshop. Built to be honest about where it helps (first draft, consistent formatting) and where it still needs a human (edge cases, prioritisation).
+GitHub repo — link coming soon
+Skills
+Process & requirements
+As-Is/To-Be mapping, BPMN 2.0 (Visio), swimlane workflows, BRD/FRD/PRD, gap analysis, SOP documentation
+Data & BI
+SQL (PostgreSQL, MySQL, Snowflake), Power Query, Power BI, DAX, advanced Excel & macro audit
+AI & governance
+EU AI Act, NIST AI RMF, ISO/IEC 42001, generative AI tools for analysis acceleration
+Delivery
+Agile/Scrum, MoSCoW prioritisation, SIT/UAT, stakeholder facilitation, JIRA, Confluence
+Contact
+Looking for Business Analyst, AI Business Analyst and Data/BI roles in the UK and Singapore. Happy to talk about any of the above, or send over the full CV.
+priyanka.dolse03@gmail.com
++44 7471 577182
+LinkedIn
+London, UK · Singapore
